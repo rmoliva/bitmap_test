@@ -27,7 +27,7 @@ RSpec.describe BitmapEditor::Bitmap, type: :model do
     let(:height) { 5 }
     let(:bitmap) { BitmapEditor::Bitmap.new(width, height) }
 
-    it 'should be initialized correctly' do
+    it 'array should be initialized correctly' do
       expect(bitmap.array).to match_array(
         [
           %w[0 0 0 0 0 0 0],
@@ -37,6 +37,24 @@ RSpec.describe BitmapEditor::Bitmap, type: :model do
           %w[0 0 0 0 0 0 0]
         ]
       )
+    end
+
+    describe 'fill with S' do
+      before(:each) do
+        bitmap.fill('S')
+      end
+
+      it 'should be filled correctly' do
+        expect(bitmap.array).to match_array(
+          [
+            %w[S S S S S S S],
+            %w[S S S S S S S],
+            %w[S S S S S S S],
+            %w[S S S S S S S],
+            %w[S S S S S S S]
+          ]
+        )
+      end
     end
 
     it 'width should return 7' do
@@ -147,7 +165,7 @@ RSpec.describe BitmapEditor::Bitmap, type: :model do
           ).to be_truthy
         end
 
-        it 'over heoght should return false' do
+        it 'over height should return false' do
           expect(
             bitmap.valid_position?(1, height + 1)
           ).to be_falsey

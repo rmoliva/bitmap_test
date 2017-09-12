@@ -10,15 +10,9 @@ module BitmapEditor
         return
       end
 
-      File.open(file).each do |line|
-        line = line.chomp
-        case line
-        when 'S'
-          puts 'There is no image'
-        else
-          puts 'unrecognised command :('
-        end
-      end
+      # Create the bitmap processor
+      processor = BitmapEditor::Processor.new
+      File.open(file).each { |line| processor.execute(line.chomp) }
     end
   end # Main
 end # BitmapEditor

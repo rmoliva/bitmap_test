@@ -10,14 +10,14 @@ module BitmapEditor
     # Bitmap constructor. Sets the bitmap dimensions to create
     # an empty board
     # width and height must be greater than 0
-    def initialize(width, height, initial_color = '0')
+    def initialize(initial_width, initial_height, initial_color = '0')
       # Check correct params
-      raise BitmapException, 'Invalid height' if height <= 0
-      raise BitmapException, 'Invalid width' if width <= 0
+      raise BitmapException, 'Invalid height' if initial_height <= 0
+      raise BitmapException, 'Invalid width' if initial_width <= 0
 
       # Create array
-      @array = Array.new(height) do
-        Array.new(width, initial_color)
+      @array = Array.new(initial_height) do
+        Array.new(initial_width, initial_color)
       end
     end
 
@@ -31,6 +31,13 @@ module BitmapEditor
     def height
       # Get the size of the main array
       @array.size
+    end
+
+    # This function fills all the board with an specific color
+    def fill(color)
+      @array = Array.new(height) do
+        Array.new(width, color)
+      end
     end
 
     # This function changes the value at a certain position
