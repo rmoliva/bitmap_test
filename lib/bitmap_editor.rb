@@ -1,15 +1,21 @@
-class BitmapEditor
+# encoding: utf-8
+# frozen_string_literal: true
 
+# Main BitmapEditor class
+class BitmapEditor
   def run(file)
-    return puts "please provide correct file" if file.nil? || !File.exists?(file)
+    if file.nil? || !File.exist?(file)
+      puts 'please provide correct file'
+      return
+    end
 
     File.open(file).each do |line|
       line = line.chomp
       case line
       when 'S'
-          puts "There is no image"
+        puts 'There is no image'
       else
-          puts 'unrecognised command :('
+        puts 'unrecognised command :('
       end
     end
   end
