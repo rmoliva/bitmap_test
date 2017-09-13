@@ -30,4 +30,12 @@ RSpec.describe BitmapEditor::Processor, type: :model do
       end # execute command V 2 3 6 W
     end # execute command L 1 3 A
   end # execute command I 5 6
+
+  describe 'execute invalid command' do
+    it 'should raise an error' do
+      expect {
+        processor.execute!('X')
+      }.to raise_error(BitmapEditor::BitmapException)
+    end
+  end
 end
