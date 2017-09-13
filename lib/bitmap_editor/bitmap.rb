@@ -11,9 +11,8 @@ module BitmapEditor
     # an empty board
     # width and height must be greater than 0
     def initialize(initial_width, initial_height, initial_color = '0')
-      # Check correct params
-      raise BitmapException, 'Invalid height' if initial_height <= 0
-      raise BitmapException, 'Invalid width' if initial_width <= 0
+      check_valid_size!(initial_width, initial_height)
+      check_valid_color!(initial_color)
 
       # Create array
       @array = Array.new(initial_height) do
@@ -44,7 +43,8 @@ module BitmapEditor
     # x and y goes from 1 to the bitmap width and height
     def set_color(x, y, color)
       # Put color if coordinates are ok
-      @array[y - 1][x - 1] = color if valid_x?(x) && valid_y?(y)
+      return if !valid_x?(x) || !valid_y?(y) || !valid_color?(color)
+      @array[y - 1][x - 1] = color
     end
 
     # The following function checks if the passed x coordinate is correct
@@ -57,6 +57,26 @@ module BitmapEditor
     # y goes from 1 to the bitmap height
     def valid_y?(y)
       y >= 1 && y <= height
+    end
+
+    # The following function checks if the passed color is correct
+    def valid_color?(color)
+      color.length == 1
+    end
+
+    protected
+
+    def check_valid_size!(width, height)
+      # Check correct params
+      raise BitmapException, 'Invalid height' if height <= 0
+      raise BitmapException, 'Invalid width' if width <= 0
+      raise BitmapException, 'Invalid height' if height > 250
+      raise BitmapException, 'Invalid width' if width > 250
+    end
+
+    def check_valid_color!(color)
+      return if valid_color?(color)
+      raise BitmapException, "Invalid color ('#{color}')'"
     end
   end # Bitmap
 end # BitmapEditor

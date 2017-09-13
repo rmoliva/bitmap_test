@@ -31,6 +31,13 @@ RSpec.describe BitmapEditor::Commands::VerticalLine, type: :model do
       end
     end # without_bitmap
 
+    describe 'color' do
+      let(:string_command) { 'V 2 3 6 WW' }
+      it 'should raise a BitmapException exception' do
+        expect { subject }.to raise_error(BitmapEditor::BitmapException)
+      end
+    end # color
+
     describe 'x' do
       describe 'with a 0 value' do
         let(:string_command) { 'V 0 3 6 W' }

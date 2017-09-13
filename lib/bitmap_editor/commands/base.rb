@@ -37,6 +37,11 @@ module BitmapEditor
         raise_value_exception!(value, value_name)
       end
 
+      def validate_color!(bitmap, value, value_name)
+        return if bitmap.valid_color?(value)
+        raise_value_exception!(value, value_name)
+      end
+
       def raise_value_exception!(value, value_name)
         raise BitmapException, "#{value_name} value is not valid ('#{value}')"
       end

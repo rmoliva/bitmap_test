@@ -3,9 +3,17 @@
 
 RSpec.describe BitmapEditor::Bitmap, type: :model do
   describe 'create with invalid params' do
-    describe 'with a zero with' do
+    describe 'with a zero width' do
       it 'should rise an exception' do
         expect { BitmapEditor::Bitmap.new(0, 1) }.to raise_exception(
+          BitmapEditor::BitmapException
+        )
+      end
+    end
+
+    describe 'with over 250 width' do
+      it 'should rise an exception' do
+        expect { BitmapEditor::Bitmap.new(251, 1) }.to raise_exception(
           BitmapEditor::BitmapException
         )
       end
@@ -14,6 +22,22 @@ RSpec.describe BitmapEditor::Bitmap, type: :model do
     describe 'with a zero height' do
       it 'should rise an exception' do
         expect { BitmapEditor::Bitmap.new(1, 0) }.to raise_exception(
+          BitmapEditor::BitmapException
+        )
+      end
+    end
+
+    describe 'with over 250 height' do
+      it 'should rise an exception' do
+        expect { BitmapEditor::Bitmap.new(1, 251) }.to raise_exception(
+          BitmapEditor::BitmapException
+        )
+      end
+    end
+
+    describe 'with invalid color' do
+      it 'should rise an exception' do
+        expect { BitmapEditor::Bitmap.new(1, 1, 'AA') }.to raise_exception(
           BitmapEditor::BitmapException
         )
       end
@@ -72,6 +96,24 @@ RSpec.describe BitmapEditor::Bitmap, type: :model do
         expect(bitmap.array).to eql(
           [
             %w[0 0 0 0 C 0 0],
+            %w[0 0 0 0 0 0 0],
+            %w[0 0 0 0 0 0 0],
+            %w[0 0 0 0 0 0 0],
+            %w[0 0 0 0 0 0 0]
+          ]
+        )
+      end
+    end
+
+    describe 'set color AA on 5, 3' do
+      before(:each) do
+        bitmap.set_color(5, 1, 'AA')
+      end
+
+      it 'array should be unmodified' do
+        expect(bitmap.array).to eql(
+          [
+            %w[0 0 0 0 0 0 0],
             %w[0 0 0 0 0 0 0],
             %w[0 0 0 0 0 0 0],
             %w[0 0 0 0 0 0 0],

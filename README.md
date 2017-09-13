@@ -31,7 +31,7 @@ coverage/index.html
 Current statistics are:
 
 * 32 files in total.
-* 533 relevant lines.
-* 522 lines covered.
+* 577 relevant lines.
+* 566 lines covered.
 * 11 lines missed.
-* 97,94% code coverage.
+* 98,09% code coverage.

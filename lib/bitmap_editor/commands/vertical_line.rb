@@ -49,6 +49,10 @@ module BitmapEditor
 
         # y should be valid
         validate_y!(bitmap, params.fetch(:to_y), 'To Y')
+
+        # color should be valid
+        validate_color!(bitmap, params.fetch(:color), 'Color')
+
         params
       end
     end

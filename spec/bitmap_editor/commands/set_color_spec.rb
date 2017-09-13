@@ -32,6 +32,13 @@ RSpec.describe BitmapEditor::Commands::SetColor, type: :model do
       end
     end # without_bitmap
 
+    describe 'color' do
+      let(:string_command) { 'L 1 3 AA' }
+      it 'should raise a BitmapException exception' do
+        expect { subject }.to raise_error(BitmapEditor::BitmapException)
+      end
+    end # color
+
     describe 'x' do
       describe 'with a 0 value' do
         let(:string_command) { 'L 0 3 A' }

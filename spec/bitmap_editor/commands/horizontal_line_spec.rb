@@ -31,6 +31,13 @@ RSpec.describe BitmapEditor::Commands::HorizontalLine, type: :model do
       end
     end # without_bitmap
 
+    describe 'color' do
+      let(:string_command) { 'H 3 5 2 ZZ' }
+      it 'should raise a BitmapException exception' do
+        expect { subject }.to raise_error(BitmapEditor::BitmapException)
+      end
+    end # color
+
     describe 'from_x' do
       describe 'with a 0 value' do
         let(:string_command) { 'H 0 5 2 Z' }
