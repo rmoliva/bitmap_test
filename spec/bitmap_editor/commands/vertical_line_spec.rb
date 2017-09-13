@@ -1,8 +1,6 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-require 'spec_base'
-
 RSpec.describe BitmapEditor::Commands::VerticalLine, type: :model do
   let(:bitmap) { BitmapEditor::Bitmap.new(5, 6) }
   let(:command) { BitmapEditor::Commands::VerticalLine.new(string_command) }

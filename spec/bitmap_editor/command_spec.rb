@@ -1,8 +1,6 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-require 'spec_base'
-
 RSpec.describe BitmapEditor::Command, type: :model do
   describe 'command' do
     describe 'with a I M N' do

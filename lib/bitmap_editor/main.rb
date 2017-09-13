@@ -23,12 +23,10 @@ module BitmapEditor
     protected
 
     def execute_line(string_command, line_number)
-      begin
-        @processor.execute!(string_command)
-      rescue BitmapException => ex
-        puts "ERROR processing Line: #{line_number}"
-        puts "-> #{ex.message}"
-      end
+      @processor.execute!(string_command)
+    rescue BitmapException => ex
+      puts "ERROR processing Line: #{line_number}"
+      puts "-> #{ex.message}"
     end
   end # Main
 end # BitmapEditor

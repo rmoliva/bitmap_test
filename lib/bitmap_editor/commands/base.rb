@@ -24,7 +24,7 @@ module BitmapEditor
       def validate_bitmap!(bitmap)
         return if bitmap
 
-        raise BitmapException, "Bitmap array not initialized"
+        raise BitmapException, 'Bitmap array not initialized'
       end
 
       def validate_x!(bitmap, value, value_name)

@@ -1,8 +1,6 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-require 'spec_base'
-
 RSpec.describe BitmapEditor::Bitmap, type: :model do
   describe 'create with invalid params' do
     describe 'with a zero with' do

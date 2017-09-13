@@ -1,8 +1,6 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-require 'spec_base'
-
 RSpec.describe BitmapEditor::Transformations::VerticalLine, type: :model do
   let(:width) { 7 }
   let(:height) { 8 }

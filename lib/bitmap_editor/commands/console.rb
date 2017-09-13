@@ -37,7 +37,7 @@ module BitmapEditor
 
       # Throw an exception if any param has an invalid value
       # If everything goes well it returns the params object
-      def validate!(bitmap, params)
+      def validate!(bitmap, _params)
         # bitmap should be initialized
         validate_bitmap!(bitmap)
       end

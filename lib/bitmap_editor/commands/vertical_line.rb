@@ -42,13 +42,13 @@ module BitmapEditor
         validate_bitmap!(bitmap)
 
         # from_x should be valid
-        validate_x!(bitmap, params.fetch(:x), "X")
+        validate_x!(bitmap, params.fetch(:x), 'X')
 
         # to_x should be valid
-        validate_y!(bitmap, params.fetch(:from_y), "From Y")
+        validate_y!(bitmap, params.fetch(:from_y), 'From Y')
 
         # y should be valid
-        validate_y!(bitmap, params.fetch(:to_y), "To Y")
+        validate_y!(bitmap, params.fetch(:to_y), 'To Y')
         params
       end
     end

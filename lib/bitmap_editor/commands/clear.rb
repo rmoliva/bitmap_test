@@ -26,7 +26,7 @@ module BitmapEditor
       # - C
       def parse!(bitmap)
         # No params needed
-        validate!(bitmap, {color: '0'})
+        validate!(bitmap, color: '0')
       end
 
       # Throw an exception if any param has an invalid value

@@ -11,4 +11,3 @@ require File.join('.', 'lib', 'bitmap_editor.rb')
 
 # Load support spec files
 Dir[File.join(__dir__, 'support', '**', '*.rb')].each { |f| require f }
-
