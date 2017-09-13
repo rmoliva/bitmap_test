@@ -7,13 +7,13 @@ RSpec.describe BitmapEditor::Processor, type: :model do
   let(:processor) { BitmapEditor::Processor.new }
 
   describe 'execute command I 5 6' do
-    before(:each) { processor.execute('I 5 6') }
+    before(:each) { processor.execute!('I 5 6') }
     describe 'execute command L 1 3 A' do
-      before(:each) { processor.execute('L 1 3 A') }
+      before(:each) { processor.execute!('L 1 3 A') }
       describe 'execute command V 2 3 6 W' do
-        before(:each) { processor.execute('V 2 3 6 W') }
+        before(:each) { processor.execute!('V 2 3 6 W') }
         describe 'execute command H 3 5 2 Z' do
-          before(:each) { processor.execute('H 3 5 2 Z') }
+          before(:each) { processor.execute!('H 3 5 2 Z') }
           it 'bitmap array should be filled correctly' do
             expect(processor.bitmap.array).to match_array(
               [

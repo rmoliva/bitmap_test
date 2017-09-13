@@ -3,7 +3,7 @@
 
 require 'spec_base'
 
-RSpec.describe BitmapEditor::Transformations::VerticalLine, type: :model do
+RSpec.describe BitmapEditor::Transformations::HorizontalLine, type: :model do
   let(:width) { 7 }
   let(:height) { 8 }
   let(:bitmap) { BitmapEditor::Bitmap.new(width, height) }
@@ -25,18 +25,24 @@ RSpec.describe BitmapEditor::Transformations::VerticalLine, type: :model do
 
   describe 'draw a vertical line on column 3 from 2 to 6' do
     before(:each) do
-      BitmapEditor::Transformations::VerticalLine.perform(bitmap, 3, 2, 6, 'S')
+      BitmapEditor::Transformations::HorizontalLine.perform(
+        bitmap,
+        from_x: 2,
+        to_x: 5,
+        y: 6,
+        color: 'S'
+      )
     end
 
     it 'array should be correct' do
       expect(bitmap.array).to match_array(
         [
           %w[0 0 0 0 0 0 0],
-          %w[0 0 S 0 0 0 0],
-          %w[0 0 S 0 0 0 0],
-          %w[0 0 S 0 0 0 0],
-          %w[0 0 S 0 0 0 0],
-          %w[0 0 S 0 0 0 0],
+          %w[0 0 0 0 0 0 0],
+          %w[0 0 0 0 0 0 0],
+          %w[0 0 0 0 0 0 0],
+          %w[0 0 0 0 0 0 0],
+          %w[0 S S S S 0 0],
           %w[0 0 0 0 0 0 0],
           %w[0 0 0 0 0 0 0]
         ]

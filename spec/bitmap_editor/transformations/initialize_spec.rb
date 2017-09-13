@@ -9,7 +9,11 @@ RSpec.describe BitmapEditor::Transformations::Initialize, type: :model do
 
   describe 'initialize array' do
     subject do
-      BitmapEditor::Transformations::Initialize.perform(width, height, 'S')
+      BitmapEditor::Transformations::Initialize.perform(
+        width: width,
+        height: height,
+        color: 'S'
+      )
     end
 
     it 'array should be correct' do

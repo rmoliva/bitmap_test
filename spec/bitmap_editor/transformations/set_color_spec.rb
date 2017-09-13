@@ -19,7 +19,12 @@ RSpec.describe BitmapEditor::Transformations::SetColor, type: :model do
 
   describe 'set color S at 2, 2' do
     before(:each) do
-      BitmapEditor::Transformations::SetColor.perform(bitmap, 2, 2, 'S')
+      BitmapEditor::Transformations::SetColor.perform(
+        bitmap,
+        x: 2,
+        y: 2,
+        color: 'S'
+      )
     end
 
     it 'array should be correct' do

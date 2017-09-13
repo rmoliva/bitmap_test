@@ -4,15 +4,31 @@
 module BitmapEditor
   # Main BitmapEditor class
   class Main
+    def initialize
+      # Create the bitmap processor
+      @processor = BitmapEditor::Processor.new
+    end
+
     def run(file)
       if file.nil? || !File.exist?(file)
         puts 'please provide correct file'
         return
       end
 
-      # Create the bitmap processor
-      processor = BitmapEditor::Processor.new
-      File.open(file).each { |line| processor.execute(line.chomp) }
+      File.open(file).each_with_index do |line, index|
+        execute_line(line.chomp, index + 1)
+      end
+    end
+
+    protected
+
+    def execute_line(string_command, line_number)
+      begin
+        @processor.execute!(string_command)
+      rescue BitmapException => ex
+        puts "ERROR processing Line: #{line_number}"
+        puts "-> #{ex.message}"
+      end
     end
   end # Main
 end # BitmapEditor

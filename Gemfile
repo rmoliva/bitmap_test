@@ -3,7 +3,7 @@
 
 source 'https://rubygems.org'
 
-ruby '2.3.0'
+ruby '2.3.4'
 
 # A make-like build utility for Ruby.
 gem 'rake'

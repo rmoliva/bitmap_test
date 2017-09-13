@@ -119,58 +119,56 @@ RSpec.describe BitmapEditor::Bitmap, type: :model do
       end
     end
 
-    describe 'valid_position?' do
-      describe 'width' do
-        it 'below 1 should return false' do
-          expect(
-            bitmap.valid_position?(0, 1)
-          ).to be_falsey
-        end
-
-        it '1 should return true' do
-          expect(
-            bitmap.valid_position?(1, 1)
-          ).to be_truthy
-        end
-
-        it 'width should return true' do
-          expect(
-            bitmap.valid_position?(width, 1)
-          ).to be_truthy
-        end
-
-        it 'over width should return false' do
-          expect(
-            bitmap.valid_position?(width + 1, 1)
-          ).to be_falsey
-        end
+    describe 'valid_x?' do
+      it 'below 1 should return false' do
+        expect(
+          bitmap.valid_x?(0)
+        ).to be_falsey
       end
 
-      describe 'height' do
-        it 'below 1 should return false' do
-          expect(
-            bitmap.valid_position?(1, 0)
-          ).to be_falsey
-        end
-
-        it '1 should return true' do
-          expect(
-            bitmap.valid_position?(1, 1)
-          ).to be_truthy
-        end
-
-        it 'height should return true' do
-          expect(
-            bitmap.valid_position?(1, height)
-          ).to be_truthy
-        end
-
-        it 'over height should return false' do
-          expect(
-            bitmap.valid_position?(1, height + 1)
-          ).to be_falsey
-        end
+      it '1 should return true' do
+        expect(
+          bitmap.valid_x?(1)
+        ).to be_truthy
       end
-    end # valid_position?
+
+      it 'width should return true' do
+        expect(
+          bitmap.valid_x?(width)
+        ).to be_truthy
+      end
+
+      it 'over width should return false' do
+        expect(
+          bitmap.valid_x?(width + 1)
+        ).to be_falsey
+      end
+    end # valid_x?
+
+    describe 'valid_y?' do
+      it 'below 1 should return false' do
+        expect(
+          bitmap.valid_y?(0)
+        ).to be_falsey
+      end
+
+      it '1 should return true' do
+        expect(
+          bitmap.valid_y?(1)
+        ).to be_truthy
+      end
+
+      it 'height should return true' do
+        expect(
+          bitmap.valid_y?(height)
+        ).to be_truthy
+      end
+
+      it 'over height should return false' do
+        expect(
+          bitmap.valid_y?(height + 1)
+        ).to be_falsey
+      end
+    end
   end # 7x5 bitmap
 end

@@ -19,7 +19,7 @@ RSpec.describe BitmapEditor::Transformations::Clear, type: :model do
 
   describe 'clear array with an S' do
     before(:each) do
-      BitmapEditor::Transformations::Clear.perform(bitmap, 'S')
+      BitmapEditor::Transformations::Clear.perform(bitmap, color: 'S')
     end
 
     it 'array should be correct' do

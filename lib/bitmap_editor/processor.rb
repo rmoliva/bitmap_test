@@ -12,9 +12,9 @@ module BitmapEditor
     end
 
     # Execute the command received (line of a command file)
-    def execute(string_command)
+    def execute!(string_command)
       # Find the command object responsible of the string command
-      command = BitmapEditor::Commands::Base.command(string_command)
+      command = BitmapEditor::Command.command(string_command)
 
       unless command
         raise(
@@ -24,7 +24,7 @@ module BitmapEditor
       end
 
       # Execute the command, saving the result in the bitmap object
-      @bitmap = command.execute(@bitmap)
+      @bitmap = command.execute!(@bitmap)
     end
   end
 end

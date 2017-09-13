@@ -44,23 +44,17 @@ module BitmapEditor
     # x and y goes from 1 to the bitmap width and height
     def set_color(x, y, color)
       # Put color if coordinates are ok
-      @array[y - 1][x - 1] = color if valid_position?(x, y)
+      @array[y - 1][x - 1] = color if valid_x?(x) && valid_y?(y)
     end
 
-    # The following function checks if the passed coordinates are correct
-    # x and y goes from 1 to the bitmap width and height
-    def valid_position?(x, y)
-      return false unless valid_x?(x)
-      return false unless valid_y?(y)
-      true
-    end
-
-    protected
-
+    # The following function checks if the passed x coordinate is correct
+    # x goes from 1 to the bitmap width
     def valid_x?(x)
       x >= 1 && x <= width
     end
 
+    # The following function checks if the passed y coordinate is correct
+    # y goes from 1 to the bitmap height
     def valid_y?(y)
       y >= 1 && y <= height
     end

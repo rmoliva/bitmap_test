@@ -5,35 +5,41 @@ module BitmapEditor
   module Commands
     # Base command class
     class Base
-      class << self
-        COMMANDS = [
-          BitmapEditor::Commands::Clear,
-          BitmapEditor::Commands::Console,
-          BitmapEditor::Commands::HorizontalLine,
-          BitmapEditor::Commands::Initialize,
-          BitmapEditor::Commands::SetColor,
-          BitmapEditor::Commands::VerticalLine
-        ].freeze
-
-        # Returns the command object associated to the passed string
-        # command
-        # This method is a command Factory
-        def command(string_command)
-          # Search for the command class that accepts the string command
-          return unless (cmd = find_command(string_command))
-
-          # Instantiate the command
-          cmd.new(string_command)
-        end
-
-        protected
-
-        def find_command(string_command)
-          COMMANDS.detect do |command_class|
-            command_class.key == string_command[0]
-          end
-        end # find_command
+      def initialize(string_command)
+        @string_command = string_command
       end
-    end # Base
+
+      # Execute the command over the passed bitmap object
+      # returns the transformed bitmap object.
+      # Normaly each command has only one transformation
+      # associated, for special commands just overload.
+      def execute!(bitmap)
+        params = parse!(bitmap)
+        self.class.transformation.perform(bitmap, params)
+      end
+
+      protected
+
+      # Check that the bitmap exists
+      def validate_bitmap!(bitmap)
+        return if bitmap
+
+        raise BitmapException, "Bitmap array not initialized"
+      end
+
+      def validate_x!(bitmap, value, value_name)
+        return if bitmap.valid_x?(value)
+        raise_value_exception!(value, value_name)
+      end
+
+      def validate_y!(bitmap, value, value_name)
+        return if bitmap.valid_y?(value)
+        raise_value_exception!(value, value_name)
+      end
+
+      def raise_value_exception!(value, value_name)
+        raise BitmapException, "#{value_name} value is not valid ('#{value}')"
+      end
+    end
   end # Commands
 end # BitmapEditor

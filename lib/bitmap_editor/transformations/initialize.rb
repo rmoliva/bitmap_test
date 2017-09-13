@@ -7,8 +7,16 @@ module BitmapEditor
     class Initialize
       class << self
         # Creates a new bitmap object
-        def perform(with, height, initial_color = '0')
-          BitmapEditor::Bitmap.new(with, height, initial_color)
+        # params:
+        # - width
+        # - height
+        # - color
+        def perform(params)
+          width = params.fetch(:width, 0)
+          height = params.fetch(:height, 0)
+          color = params.fetch(:color, '0')
+
+          BitmapEditor::Bitmap.new(width, height, color)
         end
       end
     end

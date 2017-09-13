@@ -8,7 +8,16 @@ module BitmapEditor
       class << self
         # Sets the color of a pixel at an specific coordinates
         # returns the transformed BitmapEditor::Bitmap
-        def perform(bitmap, x, y, color = 0)
+        # params
+        # - x
+        # - y
+        # - color: defaults to '0'
+        def perform(bitmap, params)
+          x = params.fetch(:x, 0)
+          y = params.fetch(:y, 0)
+          color = params.fetch(:color, '0')
+
+          # Set the color on the bitmap array
           bitmap.set_color(x, y, color)
           bitmap
         end

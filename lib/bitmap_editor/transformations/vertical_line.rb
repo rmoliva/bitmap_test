@@ -8,8 +8,17 @@ module BitmapEditor
       class << self
         # Sets the color of a pixel at an specific coordinates
         # returns the transformed BitmapEditor::Bitmap
-        def perform(bitmap, x, y1, y2, color)
-          (y1..y2).each do |y|
+        # params
+        # - x
+        # - from_y
+        # - to_y
+        # - color
+        def perform(bitmap, params)
+          x = params.fetch(:x, 0)
+          from_y = params.fetch(:from_y, 0)
+          to_y = params.fetch(:to_y, 0)
+          color = params.fetch(:color, '0')
+          (from_y..to_y).each do |y|
             bitmap.set_color(x, y, color)
           end
           bitmap

@@ -9,8 +9,10 @@ module BitmapEditor
         # Sets al the pixel array to one color
         # bitmap is a BitmapEditor::Bitmap object
         # returns the transformed BitmapEditor::Bitmap
-        def perform(bitmap, color = '0')
-          bitmap.fill(color)
+        # params
+        # - color : defaults to '0'
+        def perform(bitmap, params)
+          bitmap.fill(params.fetch(:color, '0'))
           bitmap
         end
       end
