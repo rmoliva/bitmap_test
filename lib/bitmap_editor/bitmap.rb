@@ -32,8 +32,8 @@ module BitmapEditor
       @array.size
     end
 
-    # This function fills all the board with an specific color
-    def fill(color)
+    # This function clear all the board with an specific color
+    def clear(color)
       @array = Array.new(height) do
         Array.new(width, color)
       end
@@ -45,6 +45,12 @@ module BitmapEditor
       # Put color if coordinates are ok
       return if !valid_x?(x) || !valid_y?(y) || !valid_color?(color)
       @array[y - 1][x - 1] = color
+    end
+
+    # This function returns the color at a certain position
+    def get_color(x, y)
+      return if !valid_x?(x) || !valid_y?(y)
+      @array[y - 1][x - 1]
     end
 
     # The following function checks if the passed x coordinate is correct

@@ -61,9 +61,9 @@ RSpec.describe BitmapEditor::Bitmap, type: :model do
       )
     end
 
-    describe 'fill with S' do
+    describe 'clear with S' do
       before(:each) do
-        bitmap.fill('S')
+        bitmap.clear('S')
       end
 
       it 'should be filled correctly' do

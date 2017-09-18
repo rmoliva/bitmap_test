@@ -12,7 +12,7 @@ module BitmapEditor
         # params
         # - color : defaults to '0'
         def perform(bitmap, params)
-          bitmap.fill(params.fetch(:color, '0'))
+          bitmap.clear(params.fetch(:color, '0'))
           bitmap
         end
       end

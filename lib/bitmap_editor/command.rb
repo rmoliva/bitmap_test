@@ -8,6 +8,7 @@ module BitmapEditor
       COMMANDS = [
         BitmapEditor::Commands::Clear,
         BitmapEditor::Commands::Console,
+        BitmapEditor::Commands::Fill,
         BitmapEditor::Commands::HorizontalLine,
         BitmapEditor::Commands::Initialize,
         BitmapEditor::Commands::SetColor,
